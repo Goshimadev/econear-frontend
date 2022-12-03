@@ -1,0 +1,123 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // compareProjects // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#compareProjects {
+  padding-top: 1em;
+  padding-inline: var(--margin-global);
+  position: relative;
+  &::before {
+    content: "";
+    @include absolute(0,-40px,0);
+    width: 80%;
+    height: 1px;
+    background-color: rgba($success, .5);
+  }
+  #container-vs {
+    --size:6.375em;
+    gap:3em 0;
+    @include media(max,small) {margin-block: 2em}
+  }
+  #compare-button {
+    @include media(max, small) {margin-bottom: 4em}
+  }
+  .container-controls {
+    .tab-right {
+      --o: visible;
+      .v-item-group {background-color: hsl(212 47% 12% / .5) !important;border-radius: .5vmax !important}
+      .v-slide-group__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+        padding: 0 1em;
+        &::before {
+          content: "";
+          @include absoluteCenter;
+          width: 1px;
+          height: 15px;
+          background-color: #FFFFFF;
+        }
+      }
+      .v-tab {
+        max-width: 1.125em !important;
+        min-width: 1.125em !important;
+      }
+    }
+  }
+  .section-down {
+    background-color: hsl(212 47% 12% / .5);
+    padding: 2em;
+    .dataTableSimple {
+      background-color: $primary;
+      padding-block: 1em;
+      td,th {color: #FFFFFF}
+      tr:hover {background: none !important}
+      tbody {
+        tr {
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-inline: auto;
+            width: calc(100% - 8em);
+            height: 1px;
+            background-color: rgba(#60D2CA, .5);
+          }
+          td:first-of-type {text-indent: 4em; border-bottom: none;min-width: 233px}
+        }
+        .confidence {padding-block: 1em}
+      }
+      &#social {
+        tbody {td:first-of-type {min-width: 253px}}
+      }
+      &#aditional {
+        tbody {td:first-of-type {min-width: 195px}}
+      }
+    }
+  }
+}
+
+#menuSearch {
+  --bg: hsl(212 47% 12% / .98);
+  --br: .5vmax;
+  max-height: 26.125em;
+  .v-list-item {
+    gap: 1em;
+    border-radius: .5vmax;
+    transition: .1s $ease-return;
+    &:hover {background-color: hsl(225 100% 100% / .1)}
+    img {
+      --w: clamp(3.8em, 4vw, 4em);
+      --br:50%;
+      font-size: clamp(.8em, 1vw, 1em)
+    }
+    h6 {font-size: clamp(1em, 1.2vw, 1.2em)}
+    span {font-size: clamp(.8em, 1vw, 1em)}
+    & ~ .v-list-item {margin-top: 1em}
+  }
+}
+
+#menuSearch2 {
+  --bg: hsl(212 47% 12% / .98);
+  --br: .5vmax;
+  max-height: 26.125em;
+  .v-list-item {
+    gap: 1em;
+    border-radius: .5vmax;
+    transition: .1s $ease-return;
+    &:hover {background-color: hsl(225 100% 100% / .1)}
+    img {
+      --w: clamp(3.8em, 4vw, 4em);
+      --br:50%;
+      font-size: clamp(.8em, 1vw, 1em)
+    }
+    h6 {font-size: clamp(1em, 1.2vw, 1.2em)}
+    span {font-size: clamp(.8em, 1vw, 1em)}
+    & ~ .v-list-item {margin-top: 1em}
+  }
+}

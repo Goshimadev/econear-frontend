@@ -1,0 +1,143 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // marketplaceStats // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#marketplaceStats {
+  @include media(max,small) {font-size: clamp(10px, 1.5vw, 12px)}
+  @include media(max,x-small) {font-size: clamp(8px, 1vw, 10px)}
+  padding-top: 1em;
+  padding-inline: var(--margin-global);
+  position: relative;
+  @include media(min, small) {
+    &::before {
+      content: "";
+      @include absolute(0,-40px,0);
+      width: 80%;
+      height: 1px;
+      background-color: rgba($success, .5);
+    }
+  }
+  h3 {font-weight: bold}
+  // btn toggle
+  .v-item-group.v-btn-toggle {
+    background-color: hsl(210, 48%, 13%, .46);
+    border-radius: .5vmax;
+    max-width: max-content;
+    padding: .2em;
+    * {border: none !important}
+    .v-btn {border-radius: .5vmax}
+  }
+  #card-stats {
+    @include media(max, small) {--p:clamp(1em,2vw,2em);flex-direction: column}
+    & > div:first-of-type {
+      position: relative;
+      padding-right: 1em;
+      margin-right: .5em;
+      // line
+      &::before {
+        content: "";
+        @include absolute(auto,0,0,0);
+        width: 1px;
+        height: 80%;
+        background-color: var(--clr-line);
+        @include media(max, small) {display: none}
+      }
+    }
+    .container-btns {
+      display: flex !important;
+      // --gtc: repeat(2, max-content);
+      // @include media(max, small) {--gtc: auto;--gaf: column;gap:1.5em}
+      .v-btn {
+        @include media(max, small) {--p:1.9em}
+        img {
+          --w:1.80375em;
+          @include media(max, small) {--w:3em}
+        }
+      }
+    }
+    p {
+      // max-width: 50ch;
+      position: relative;
+      @include media(max, small) {
+        padding-top: 1em;
+        &::before {
+          content: "";
+          @include absolute(0,0,0,auto);
+          width: 80%;
+          height: 1px;
+          background-color: var(--clr-line);
+        }
+      }
+    }
+  }
+  #container-info {
+    label {font-size: 0.9375em;color: $success}
+    span:not([class*="v-btn"]) {font-size: clamp(1.8em,2vw,2.0625em)}
+    & > div {
+      position: relative;
+      padding-right: .5em;
+      margin-right: .5em;
+      &:not(:last-of-type):before {
+        // lines
+        content: "";
+        @include absolute(auto,0,0,0);
+        width: 1px;
+        height: 80%;
+        background-color: var(--clr-line);
+      }
+    }
+  }
+  .infodown {
+    --fb: 1 1 20em;
+    gap: 1em;
+    justify-content: space-around;
+    .v-card {
+      --p: clamp(1em,2vw,2em);
+      // max-width: 24.6875em;
+      margin: initial !important;
+      @include media(min,small) {max-width: 24.6875em}
+      .v-sheet {
+        padding: 1em;
+        position: relative;
+        &::before {
+          content: "";
+          @include absolute(0,auto,0,1em);
+          width: calc(100% - 2em);
+          height: 1px;
+          background-color: var(--clr-line);
+        }
+        &>* {margin-bottom: 1em}
+        .infotext {font-size: 1.125em}
+        .number {font-size: 2.1875em}
+        .percent {font-size: 0.9375em}
+      }
+    }
+  }
+  #dataTable {
+    table {border-spacing: 0 1em}
+    td {color: #FFFFFF}
+    tbody {
+      tr {
+        position: relative;
+        &::after {
+          content: "";
+          @include absolute(auto,auto,0,0);
+          width: calc(82%);
+          height: 1px;
+          background-color: #60D2CA;
+        }
+        // .nftDetail {
+        //   cursor: pointer;
+        //   transition: .2s $ease-return;
+        //   &:hover {background-color: #21786D;box-shadow: $sombra-card}
+        // }
+      }
+    }
+    tr:hover {background:none}
+  }
+  #container-fwrap {
+    @include media(max,x-small) {display: block}
+    & > aside:first-of-type {margin-block: .5em 2em}
+  }
+}

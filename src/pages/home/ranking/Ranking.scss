@@ -1,0 +1,132 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // ranking // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#ranking {
+  font-size: 16px !important;
+  @include media(max, 1800px) {font-size: 14px !important}
+  @include media(max, 1500px) {font-size: 12px !important}
+  @include media(max, 1400px) {font-size: 10px !important}
+  @include media(max, 1360px) {font-size: 8px !important}
+  @include media(max, 1330px) {font-size: 6px !important}
+  @include media(max, small) {font-size: clamp(10px, 1.5vw, 16px) !important}
+  #dataTable {
+    --w-2: 250px;
+    .v-input {
+      font-size: 12px !important;
+      &__append-inner {padding: 0 !important}
+      i {font-size: 16px !important}
+    }
+    table {border-spacing: 0 1em}
+    td {color: #FFFFFF}
+    thead {
+      th {
+        max-width: max-content !important;
+        label {width: max-content !important}
+        button {min-width: max-content}
+      }
+      th {
+        min-width: max-content !important;
+        max-width: max-content !important;
+      }
+      th:nth-of-type(1) {width: 50px !important}
+      th:nth-of-type(2) {
+        width: var(--w-2) !important;
+        min-width: var(--w-2) !important;
+        max-width: var(--w-2) !important;
+      }
+      th:nth-of-type(3) {width: 80px !important}
+      th:nth-of-type(4) {width: 80px !important}
+      th:nth-of-type(5) {width: 115px !important}
+      th:nth-of-type(7) {width: 108px !important}
+      th:nth-of-type(8) {
+        width: 108px !important;
+        min-width: 108px !important;
+        max-width: 108px !important;
+      }
+      th:nth-of-type(9) {width: 108px !important}
+    }
+    tbody {
+      tr {
+        position: relative;
+        td:nth-of-type(2) {
+          width: var(--w-2) !important;
+          min-width: var(--w-2) !important;
+          max-width: var(--w-2) !important;
+        }
+        td span:nth-of-type(2) {word-break: break-all}
+        &::after {
+          content: "";
+          @include absolute(auto,auto,0,0);
+          width: calc(82%);
+          height: 1px;
+          background-color: #60D2CA;
+        }
+        .nftDetail {
+          cursor: pointer;
+          transition: .2s $ease-return;
+          &:hover {background-color: #21786D;box-shadow: $sombra-card}
+        }
+        .v-btn {
+          --p: 0em;
+          width: 30px !important;
+          max-height: 30px !important;
+        }
+        .v-btn.btn {
+          --p: 0 1.2em;
+          --bs :0 3px 4px 1px hsl(176, 60%, 40%, .7);
+          max-width: clamp(2em, 13vw, 13.5em) !important;
+          min-width: max-content !important;
+          height: 2.5em !important;
+          min-height: max-content !important;
+          max-height: max-content !important;
+        }
+      }
+    }
+    tr:hover {background:none}
+  }
+
+  // .dataTable {
+  //   border-spacing: 1em;
+  //   // thead {display: table-header-group}
+  //   // tbody {display: table-column-group}
+  //   tr {
+  //     position: relative;
+  //     &::before {
+  //       content: "";
+  //       @include absolute(auto,auto,0,0);
+  //       width: calc(85%);
+  //       height: 1px;
+  //       background-color: #60D2CA;
+  //     }
+  //   }
+  // }
+  #container-footer {
+    @include media(max,500px) {
+      p {
+        span + span {margin-top: .5em}
+      }
+    }
+  }
+}
+
+#menuSearch {
+  --bg: hsl(212 47% 12% / .98);
+  --br: .5vmax;
+  max-height: 26.125em;
+  .v-list-item {
+    gap: 1em;
+    border-radius: .5vmax;
+    transition: .1s $ease-return;
+    &:hover {background-color: hsl(225 100% 100% / .1)}
+    img {
+      --w: clamp(3.8em, 4vw, 4em);
+      --br:50%;
+      font-size: clamp(.8em, 1vw, 1em)
+    }
+    h6 {font-size: clamp(1em, 1.2vw, 1.2em)}
+    span {font-size: clamp(.8em, 1vw, 1em)}
+    & ~ .v-list-item {margin-top: 1em}
+  }
+}

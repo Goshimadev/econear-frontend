@@ -1,0 +1,239 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // projectDetails // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#projectDetails {
+  padding-top: 1em;
+  padding-inline: var(--margin-global);
+  // & > :first-child + * + * ~ * {margin-top: clamp(1em, 2vw, 2em)}
+  & > :first-child {margin-top:7em}
+  & > :first-child + * ~ * {margin-top: clamp(1em, 2vw, 2em)}
+  @include media(max,small) {font-size: clamp(10px, 1.5vw, 12px)}
+  @include media(max,x-small) {font-size: clamp(8px, 1vw, 10px)}
+  .infotext {color: #B3B3B3}
+  .v-item-group {
+    background-color: $primary !important;
+    padding: .2em;
+    .v-btn {
+      border: none !important;
+      min-width: 3em !important;
+      max-height: 3em !important;
+      i {font-size: 1.3em}
+    }
+    .v-item--active {
+      i {color: #FFFFFF !important}
+    }
+  }
+  h2 {font-size: 2.8125em}
+  .container-header {
+    width: 100vw;
+    margin-inline: calc(-50vw + 50%);
+    height: 300px;
+    padding-left: var(--margin-global);
+    padding-bottom: 1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    &::before {
+      content: "";
+      @include absoluteCenter;
+      background: center no-repeat url(../../assets/images/muestra.jpg);
+      background-size: cover;
+      height: var(--parent);
+      transform: rotate(-90deg);
+    }
+  }
+  .container-profile {
+    pointer-events: none;
+    * {pointer-events: all}
+    position: relative;
+    transform: translateY(-110px);
+    .contactions {
+      @include absolute(auto,115px,0);
+      @include media(max,480px) {
+        position: static;
+        margin-top: 2em;
+        box-shadow: 0 0 2px 1px var(--success);
+        border-radius: 1.5vmax;
+      }
+    }
+    // line
+    &::after {
+      content: "";
+      @include absolute(0,auto,0,-40px);
+      width: 100%;
+      height: 1px;
+      background-color: var(--clr-line);
+    }
+  }
+  .description {
+    text-align: center;
+    font-size: 1.8em;
+    line-height: 1;
+  }
+  .infoup {
+    --bg: var(--clr-card);
+    --p: 1em;
+    --w: min(100%,41.625em);
+    &>div+div:not(:last-child) {
+      border-inline: 1px solid var(--clr-line);
+      margin-inline: .5em;
+      padding-inline: .5em;
+    }
+    label {
+      font-size: 0.9375em;
+      color: $success;
+    }
+    span {font-size: 2.0625em}
+  }
+  .infodown {
+    --fb: 1 1 20em;
+    gap: 1em;
+    .v-card {
+      --p: clamp(1em,2vw,2em);
+      @include media(min,small) {max-width: 24.6875em}
+      .v-sheet {
+        padding: 1em;
+        position: relative;
+        &::before {
+          content: "";
+          @include absolute(0,auto,0,1em);
+          width: calc(100% - 2em);
+          height: 1px;
+          background-color: var(--clr-line);
+        }
+        &>* {margin-bottom: 1em}
+        .infotext {font-size: 1.125em}
+        .number {font-size: 2.1875em}
+        .percent {font-size: 0.9375em}
+      }
+    }
+  }
+  .container-potential {
+    .v-card {
+      @include media(min,small) {max-width: 31.25em}
+      padding: 1em;
+      position: relative;
+      &::after {
+        content: "";
+        @include absolute(0,auto,0,1em);
+        width: calc(100% - 2em);
+        height: 1px;
+        background-color: var(--clr-line);
+      }
+      &>* {margin-bottom: 1em}
+      .infotext {font-size: 1.125em}
+      .number {font-size: 2.1875em}
+      .percent {font-size: 0.9375em;margin-top:10px}
+      .holding {font-size: 1em;color: #B3B3B3}
+    }
+  }
+  .v-item-group.v-btn-toggle {
+    background-color: var(--primary);
+    border-radius: .5vmax;
+    max-width: max-content;
+    .v-btn {border-radius: .5vmax}
+  }
+
+
+  .dataTable {
+    font-size: 16px;
+    table {border-spacing: 0 1em}
+    thead {
+      tr {
+        th {
+          color: #FFFFFF;
+          font-size: 1em;
+          &:first-of-type {i{display: none !important}}
+          @include child(4, 7) {min-width: 128px}
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          font-size: .9em;
+          border-bottom-color: var(--clr-line);
+        }
+        &:hover:not(.add) {background-color: transparent}
+        &:hover.add {
+          cursor: pointer;
+          background-color: #21786D;
+          transition: .2s $ease-return;
+        }
+      }
+      .v-input {
+        input::placeholder {
+          color: #b9b9b9 !important;
+        }
+      }
+    }
+    &.wallets {
+      .v-input {
+        max-width: 18.125em;
+        &__slot {
+          i {color: $success !important}
+          .v-select__selection {color: #FFFFFF !important}
+        }
+      }
+    }
+    &.top {
+      thead th:nth-of-type(4) {min-width: 148px}
+    }
+  }
+  #container-nft {
+    #controls {
+      .search {
+        input {font-size: 1em !important}
+        i {font-size: 1.3em !important}
+      }
+    }
+    .content {
+      .v-card {
+        &.widthLimiter {max-width: 21.2225em}
+        h6 {
+          font-size: 1.25em;
+          text-align: center;
+          padding-bottom: 5px;
+          position: relative;
+          &::before {
+            content: "";
+            @include absolute(0,auto,0,0);
+            width: 100%;
+            height: 1px;
+            background-color: var(--clr-line);
+          }
+        }
+        span:not(span[class*="v-chip"]) {font-size: 1.095625em}
+        #rank .v-chip__content {font-size: 0.75em}
+        #rarity .v-chip__content {font-size: 0.9375em}
+      }
+    }
+  }
+  #contaioner-buyer-seller {
+    @include media(max, small) {display: block;& > *:first-child {margin-bottom: 1em}}
+  }
+}
+
+#menuSearch {
+  --bg: hsl(212 47% 12% / .98);
+  --br: .5vmax;
+  max-height: 26.125em;
+  .v-list-item {
+    gap: 1em;
+    border-radius: .5vmax;
+    transition: .1s $ease-return;
+    &:hover {background-color: hsl(225 100% 100% / .1)}
+    img {
+      --w: clamp(3.8em, 4vw, 4em);
+      --br:50%;
+      font-size: clamp(.8em, 1vw, 1em)
+    }
+    h6 {font-size: clamp(1em, 1.2vw, 1.2em)}
+    span {font-size: clamp(.8em, 1vw, 1em)}
+    & ~ .v-list-item {margin-top: 1em}
+  }
+}

@@ -1,0 +1,122 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // market // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#market {
+  .marketContainer {
+    background-color: rgba(#112131, .46);
+    padding: clamp(.5em, 2vw, 2em);
+    border-radius: $border-card;
+    .v-card {
+      background-color: #122432;
+      border: .8px solid rgba(#707070, .1);
+      padding: 1em;
+    }
+    .sectionDown {
+      @include media(min, 500px) {font-size: clamp(12px, 1vw, 16px)}
+      @include media(max, 500px) {font-size: 12px}
+      @include media(max, 320px) {font-size: 10px}
+      .v-card {
+        aside {
+          position: relative;
+          &::before {
+            content: "";
+            @include absolute(auto,auto,0,0);
+            width: calc(100% - clamp(4em,4.7vw,4.75em) - clamp(.5em, 1vw, 1em) - 20px);
+            height: 1px;
+            background-color: #60D2CA;
+          }
+          div > div > span:first-of-type {
+            max-width: clamp(9.375em, 15vw, 17em);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  article {
+    background-color: rgba(#112131, .46);
+    padding: clamp(.5em, 2vw, 2em);
+    border-radius: $border-card;
+    font-size: 14px;
+    @include media(max,1450px) {font-size: 12px};
+    @include media(max,1268px) {font-size: clamp(11px, 1.5vw, 15px)};
+    .v-card {
+      --fb: 1 1 495px;
+      height: min-content !important;
+      min-height: min-content !important;
+      max-height: min-content !important;
+      background-color: #122432;
+      border: .8px solid rgba(#707070, .1);
+      box-shadow: 0 0 1.5px 1.5px $clr-btn !important;
+      .container-info {
+        padding-inline: clamp(1em, 2vw, 2em);
+        @include media(max,1268px) {
+          flex-direction: column;
+          padding-block: 2em;
+        };
+        h3 {
+          max-width: 11ch;
+          position: relative;
+          @include media(max,1268px) {
+            max-width: none;
+            padding-bottom: .5em;
+            text-align: center;
+            &::before {
+              --move: 1em;
+              content: "";
+              @include absolute(0,auto,0,0);
+              width: calc(100% + var(--move));
+              transform: translateX(calc(var(--move) * -.5));
+              height: 1px;
+              // border-bottom: 1px solid #FFFFFF;
+              background-color: #ffffff;
+            }
+          }
+        }
+        p {
+          @include media(min,1268px) {max-width: 25ch};
+          max-height: 12em;
+          position: relative;
+          &::before {
+            content: "";
+            @include absoluteCenter;
+            width: calc(100% + 2em);
+            transform: translateX(-1em);
+            height: 50%;
+            border-inline: 1px solid #FFFFFF;
+            @include media(max,1268px) {display: none !important}
+          }
+        }
+      }
+    }
+  }
+}
+
+.modalMarketMore {
+  min-height: 700px !important;
+  @include media(max, 500px) {font-size: 12px}
+}
+#modalMarketMore {
+  height: 100%;
+  .v-card {
+    position: relative;
+    &::after {
+      content: "";
+      @include absolute(auto,auto,0,0);
+      width: calc(100% - clamp(4em,4.7vw,4.75em) - clamp(.5em, 1vw, 1em) - 20px);
+      height: 1px;
+      background-color: #60D2CA;
+    }
+    #container-desc {
+      max-width: 30.4ch;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {}
+    }
+  }
+}

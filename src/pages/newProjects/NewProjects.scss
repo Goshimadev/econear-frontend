@@ -1,0 +1,52 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // newProjects // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#newProjects {
+  padding-top: 1em;
+  padding-inline: var(--margin-global);
+  position: relative;
+  @include media(min, small) {
+    &::before {
+      content: "";
+      @include absolute(0,-40px,0);
+      width: 80%;
+      height: 1px;
+      background-color: rgba($success, .5);
+    }
+  }
+  .section-down {
+    background-color: hsl(212 47% 12% / .5);
+    padding: clamp(.5em, 2vw, 2em);
+    place-items: center;
+    &:has(:only-child) {place-items: initial}
+    .v-card {
+      width: min(100%, 24.6875em);
+      // @include media(max,897px) {width: 100%}
+      div:has(img, h6, span) {overflow: hidden}
+      h6 + span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      aside {
+        position: relative;
+        margin-top: 3em;
+        // line
+        &::after {
+          content: "";
+          position: absolute;
+          top: calc(-1em + 5px);
+          left: 0;
+          right: 0;
+          margin-inline: auto;
+          width: 15.9375em;
+          @include media(max,450px) {width: 90%}
+          height: 1px;
+          background-color: rgba($success, .7);
+        }
+      }
+    }
+  }
+}

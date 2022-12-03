@@ -1,0 +1,102 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // activeWalletsStats // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+#activeWalletsStats {
+  padding-top: 1em;
+  padding-inline: var(--margin-global);
+  position: relative;
+  @include media(min, small) {
+    &::before {
+      content: "";
+      @include absolute(0,-40px,0);
+      width: 80%;
+      height: 1px;
+      background-color: rgba($success, .5);
+    }
+  }
+  // btn toggle
+  .v-item-group.v-btn-toggle {
+    background-color: hsl(210, 48%, 13%, .46);
+    border-radius: .5vmax;
+    max-width: max-content;
+    padding: .2em;
+    * {border: none !important}
+    .v-btn {border-radius: .5vmax}
+  }
+  .infodown {
+    --fb: 1 1 20em;
+    gap: 1em;
+    justify-content: space-evenly;
+    .v-card {
+      margin: initial !important;
+      max-width: max-content;
+      --p: clamp(1em,2vw,2em);
+      @include media(min,small) {max-width: 24.6875em}
+      .v-sheet {
+        width: 100%;
+        padding: 1em;
+        position: relative;
+        &::before {
+          content: "";
+          @include absolute(0,auto,0,1em);
+          width: calc(100% - 2em);
+          height: 1px;
+          background-color: var(--clr-line);
+        }
+        &>* {margin-bottom: 1em}
+        .infotext {font-size: 1.125em}
+        .text {font-size: 2.1875em}
+        .number {color: $success; font-size: 0.9375em !important}
+      }
+    }
+  }
+  .dataTable {
+    table {border-spacing: 0 1em}
+    thead {
+      tr {
+        th {
+          color: #FFFFFF;
+          font-size: 1em;
+          &:first-of-type {i{display: none !important}}
+          @include child(3,8) {min-width: 99px}
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          font-size: .9em;
+          padding-bottom: .5em;
+          border-bottom-color: var(--clr-line);
+          &:nth-of-type(2) {min-width: 224px}
+          &:nth-of-type(3n + 5) {min-width: 145px}
+        }
+        &:hover:not(.add) {background-color: transparent}
+        &:hover.add {
+          cursor: pointer;
+          background-color: #21786D;
+          transition: .2s $ease-return;
+        }
+        .walletDetails {
+          cursor: pointer;
+          transition: .2s $ease-return;
+          &:hover {background-color: #21786D;box-shadow: $sombra-card}
+        }
+      }
+      .v-input {
+        input::placeholder {
+          color: #b9b9b9 !important;
+        }
+      }
+    }
+  }
+}
+
+.selectGreen {
+  font-size: clamp(10px, 1.5vw, 16px);
+  .v-list {
+    background-color: #1F6C64 !important;
+  }
+}
