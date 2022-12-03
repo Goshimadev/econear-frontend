@@ -1,0 +1,271 @@
+@use "@/styles/app" as *;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+/* // // charts // // */ 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // /
+
+.charts {
+  gap: clamp(3em, 4vw, 4em);
+  // decoration tags
+  .tag_bottom {
+    --c: #B3B3B3;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  .tags {
+    --width: 3em;
+    width: calc(100% - var(--width)) !important;
+    @include media(max, 600px) {width: 100% !important}
+    margin-left: auto;
+    position: relative;
+    &::before {
+      content: var(--tag);
+      @include absolute(0,0,auto,0);
+      font-size: 1.1em;
+      font-weight: bold;
+      height: max-content;
+      width: max-content;
+      color: #B3B3B3;
+      transform: rotate(-90deg) translateY(calc(var(--width) * -1.5));
+      @include media(max, 600px) {transform: rotate(-90deg) translateY(calc(var(--width) * -1))}
+    }
+    ///////////////////// desktop
+    // &#rarityDistribution::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.3))}
+    // &#rarityPrice::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.3))}
+    ///////////////////// mobile
+    @include media(max, 600px) {
+      &#twitter::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.3))}
+      &#marketcap::before {transform: rotate(-90deg) translateY(calc(var(--width) * -.7))}
+      &#volume::before {transform: rotate(-90deg) translateY(calc(var(--width) * -.7))}
+      &#visits::before {transform: rotate(-90deg) translateY(calc(var(--width) * -.7))}
+      &#totalSales::before {transform: rotate(-90deg) translateY(calc(var(--width) * -.3))}
+    }
+  }
+  .tags2 {
+    --width: 2em;
+    width: calc(100% - (var(--width) * 2)) !important;
+    @include media(max, 600px) {width: 100% !important; transform: translateX(-3px)}
+    margin-inline: auto;
+    position: relative;
+    &::before {
+      content: var(--tag);
+      @include absolute(0,0,auto,0);
+      font-size: 1.1em;
+      font-weight: bold;
+      height: max-content;
+      width: max-content;
+      color: #B3B3B3;
+      transform: rotate(-90deg) translateY(calc(var(--width) * -1.5));
+    }
+    &::after {
+      content: var(--tag2);
+      @include absolute(auto,0,0,0);
+      font-size: 1.1em;
+      font-weight: bold;
+      height: max-content;
+      width: max-content;
+      color: #B3B3B3;
+      transform: rotate(-90deg) translateY(calc(var(--width) * 2));
+    }
+    //////////////////////// desktop
+    &#sales::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.3))}
+    &#sales::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.7))}
+    &#holders::before {transform: rotate(-90deg) translateY(calc(var(--width) * -3.5))}
+    &#holders::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.7))}
+    &#buyers::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.3))}
+    &#buyers::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.7))}
+    &#discord::before {transform: rotate(-90deg) translateY(calc(var(--width) * -2.2))}
+    &#discord::after {transform: rotate(-90deg) translateY(calc(var(--width) * 2.2))}
+    ///////////////////////// mobile
+    @include media(max, 600px) {
+      &#market::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.1))}
+      &#market::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.5))}
+      &#price::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.1))}
+      &#price::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.6))}
+      &#sales::before {transform: rotate(-90deg) translateY(calc(var(--width) * -.4))}
+      &#sales::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.2))}
+      &#buyers::before {transform: rotate(-90deg) translateY(calc(var(--width) * -.5))}
+      &#buyers::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.1))}
+      &#holders::before {transform: rotate(-90deg) translateY(calc(var(--width) * -3.1))}
+      &#holders::after {transform: rotate(-90deg) translateY(calc(var(--width) * 1.2))}
+      &#discord::before {transform: rotate(-90deg) translateY(calc(var(--width) * -1.8))}
+    }
+  }
+  // controls
+  .toolbar {
+    --margin: 60px;
+    margin-left: var(--margin);
+    margin-bottom: 1em;
+    width: calc(100% - var(--margin));
+    display: flex;
+    gap: 2em 0;
+    &:not(.divcol) {
+      justify-content: space-between;
+      align-items: center;
+    }
+    &.not_margin {margin-left: 0 !important;width: 100% !important}
+    h3 {margin-bottom: .2em !important}
+    .legend {
+      gap: .3em;
+      .marker {
+        width: 10px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        background-color: var(--color);
+      }
+      span {font-size: 1.125em;font-weight: bold;--c: #B3B3B3}
+      img {--w:1.1875em}
+    }
+    .values {
+      h6 {font-size: 1.125em !important}
+      .percent {font-size: 0.9375em !important}
+    }
+    .v-btn-toggle {margin-left: auto}
+    .v-btn {
+      background-color: transparent;
+      padding: 0;
+      &.active {
+        background-color: hsl(176, 56%, 60%, .46) !important;
+      }
+      .v-icon {font-size: 1.3em}
+    }
+  }
+  .responsive_actions {
+    overscroll-behavior: contain;
+    .v-btn {
+      min-width: 3em !important;
+      max-height: 3em !important;
+    }
+    @include media(max,540px) {font-size: 11px}
+    @include media(max,425px) {
+      --margin: 30px;
+      font-size: 8px;
+    }
+  }
+  // labels
+  tspan {fill: #ffffff}
+  // legend
+  .apexcharts-legend-text {color: #ffffff !important}
+  // tooltip
+  .apexcharts-tooltip {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    // border-radius: 3vmax !important;
+    border: none !important;
+    &-series-group {
+      border-radius: 3vmax !important;
+      span {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+  // tooltip bottom
+  .apexcharts-xaxistooltip {
+    background-color: $primary;
+    &::before, &::after {border-bottom-color: $primary}
+    border: none;
+    &-text {color: $success}
+  }
+
+  // linechart //
+  &#linechart {
+    // tooltip
+    .apexcharts-tooltip {
+      // bajo revision par aquitar o dejar
+      &-text {height: 32px !important}
+      // bajo revision par aquitar o dejar
+      &-series-group {
+        // bajo revision par aquitar o dejar
+        span {margin-right: 8px}
+        // bajo revision par aquitar o dejar
+        & + .apexcharts-tooltip-series-group {margin-top: .5em}
+        &:first-of-type {
+          background-color: hsl(32, 73%, 49%, .46);
+          span {color: #D88321}
+        }
+        &:last-of-type {
+          background-color: hsl(176, 56%, 60%, .46);
+          span {color: #60D2CA}
+        }
+      }
+    }
+
+    // doble stroke linecharts //
+    &.doble {
+      .apexcharts-tooltip {
+        &-series-group {
+          &:first-of-type {
+            background-color: hsl(264, 70%, 48%, .6) !important;
+            span {color: #ffffff !important}
+          }
+          &:last-of-type {
+            background-color: hsl(32, 73%, 49%, .6) !important;
+            span {color: #ffffff !important}
+          }
+        }
+      }
+    }
+    
+    &.doble2 {
+      .apexcharts-tooltip {
+        &-series-group {
+          &:first-of-type {
+            background-color: hsl(211, 95%, 78%, .6) !important;
+            span {color: #ffffff !important}
+          }
+          &:last-of-type {
+            background-color: hsl(0, 100%, 50%, .6) !important;
+            span {color: #ffffff !important}
+          }
+        }
+      }
+    }
+
+    // triple stroke linecharts //
+    &.triple {
+      .apexcharts-tooltip {
+        &-series-group {
+          &:first-of-type {
+            background-color: hsl(171, 100%, 72%, .46) !important;
+            span {color: #ffffff !important}
+            & + .apexcharts-tooltip-series-group {
+              background-color: hsl(264, 70%, 48%, .6) !important;
+              span {color: #FFFFFF !important}
+            }
+          }
+          &:last-of-type {
+            background-color: hsl(32, 73%, 49%, .6) !important;
+            span {color: #ffffff !important}
+          }
+        }
+      }
+    }
+  }
+
+  // piechart //
+  &#piechart {
+    #pie {
+      @include media(max,480px) {display: grid; place-items: center;}
+    }
+    path {stroke: transparent}
+    .apexcharts-legend-series {
+      &::after {
+        content: var(--percent);
+      }
+    }
+  }
+
+  // barchart //
+  &#barchart {
+    // tooltip
+    .tags {--text-color: #70ffea}
+    .apexcharts-tooltip {
+      background-color: hsl(171, 100%, 72%, .46) !important;
+      box-shadow: none !important;
+      border-radius: 3vmax !important;
+      border: none !important;
+      span {color: var(--text-color)}
+    }
+  }
+}
